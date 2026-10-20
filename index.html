@@ -41,7 +41,12 @@
     padding: 10px 4px; border-bottom: 1px solid var(--border);
   }
   li input { width: 18px; height: 18px; accent-color: var(--accent); }
-  li span { flex: 1; word-break: break-word; }
+  li span { flex: 1; word-break: break-word; cursor: text; }
+  li input.edit {
+    flex: 1; min-width: 0; width: auto; height: auto; padding: 4px 8px;
+    font: inherit; color: inherit; background: transparent;
+    border: 1px solid var(--accent); border-radius: 6px;
+  }
   li.done span { text-decoration: line-through; color: var(--muted); }
   li button {
     border: 0; background: none; color: var(--muted);
@@ -86,6 +91,8 @@
 
       const text = document.createElement('span');
       text.textContent = todo.text;
+      text.title = '더블클릭해서 수정';
+      text.addEventListener('dblclick', () => startEdit(text, todo));
 
       const del = document.createElement('button');
       del.textContent = '×';
@@ -98,6 +105,30 @@
     const left = todos.filter(t => !t.done).length;
     document.getElementById('count').textContent =
       todos.length ? `남은 할 일 ${left}개 / 전체 ${todos.length}개` : '할 일이 없어요.';
+  }
+
+  function startEdit(text, todo) {
+    const edit = document.createElement('input');
+    edit.type = 'text';
+    edit.className = 'edit';
+    edit.value = todo.text;
+    let finished = false;
+    const finish = keep => {
+      if (finished) return;
+      finished = true;
+      const value = edit.value.trim();
+      if (keep && value) todo.text = value;
+      update();
+    };
+    edit.addEventListener('keydown', e => {
+      if (e.isComposing) return; // 한글 조합 중 Enter는 무시
+      if (e.key === 'Enter') finish(true);
+      if (e.key === 'Escape') finish(false);
+    });
+    edit.addEventListener('blur', () => finish(true));
+    text.replaceWith(edit);
+    edit.focus();
+    edit.select();
   }
 
   function update() { save(); render(); }
