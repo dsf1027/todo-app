@@ -5,8 +5,9 @@ JSON 데이터 → 카드 이미지(PNG) — 피드 카드뉴스(1080×1350, 기
 ## 실행
 
 ```bash
-# 1) photo 카드의 imageQuery로 Pexels 사진 받기 (JSON에 image·credit이 채워짐)
-PEXELS_API_KEY=키 node cardnews/fetch-images.js cardnews/samples/photo-tech.json
+# 1) photo 카드의 imageQuery로 무료 사진 받기 (JSON에 image·credit이 채워짐)
+#    PIXABAY_API_KEY 또는 PEXELS_API_KEY 중 있는 쪽 사용
+PIXABAY_API_KEY=키 node cardnews/fetch-images.js cardnews/samples/photo-tech.json
 
 # 2) 카드뉴스 이미지 만들기 (Playwright 필요)
 node cardnews/render.js cardnews/samples/photo-tech.json out
@@ -38,7 +39,7 @@ node cardnews/render.js cardnews/samples/policy.json out --format=reel --video
 | `impact` | `label`, `title`, `who`, `result`, `detail` |
 | `action` | `label`, `title`, `steps[]` |
 | `outro` | `label`, `sources[] {name, date, title}`, `cta`, `disclaimer` |
-| `photo` | `image`(JSON 파일 기준 상대경로 또는 URL), `imageQuery`(Pexels 영문 검색어), `kicker`, `title`, `sub`, `credit` — 사진을 꽉 채우고 위쪽에 핵심 문장만 |
+| `photo` | `image`(JSON 파일 기준 상대경로 또는 URL), `imageQuery`(Pixabay·Pexels 영문 검색어), `kicker`, `title`, `sub`, `credit` — 사진을 꽉 채우고 위쪽에 핵심 문장만 |
 
 예시: `samples/policy.json`(기본형), `samples/photo-tech.json`(사진형, `fetch-images.js`로 사진을 받은 뒤 렌더링).
 
