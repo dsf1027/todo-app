@@ -1,5 +1,6 @@
 {
   "sample": true,
+  "format": "card",
   "brand": "이슈한장",
   "handle": "@issue.hanjang",
   "category": "tech",
@@ -7,36 +8,36 @@
   "cards": [
     {
       "type": "photo",
-      "image": "images/ev-night.svg",
       "kicker": "전기차 살 때 꼭 보는 것",
       "title": "같은 전기차인데\n배터리가 다르다?\n**LFP vs NCM**",
-      "credit": "일러스트: 샘플 이미지"
+      "imageQuery": "electric car night"
     },
     {
       "type": "photo",
-      "image": "images/battery-cells.svg",
       "title": "LFP 배터리는\n**싸고 오래 가요**",
       "sub": "리튬인산철 · 열에 강하고 수명이 긴 편\n대신 같은 무게에 담는 에너지가 적어요",
-      "credit": "일러스트: 샘플 이미지"
+      "imageQuery": "battery cells"
     },
     {
       "type": "photo",
-      "image": "images/highway.svg",
       "title": "NCM 배터리는\n**한 번에 멀리 가요**",
       "sub": "니켈·코발트·망간 · 에너지 밀도가 높은 편\n대신 가격이 비싼 편이에요",
-      "credit": "일러스트: 샘플 이미지"
+      "imageQuery": "highway sunset"
     },
     {
       "type": "photo",
-      "image": "images/charging.svg",
       "title": "내 차 배터리는?\n**제원표**에서 확인",
       "sub": "제조사 홈페이지 · 카탈로그의\n'배터리 종류' 항목을 보세요",
-      "credit": "일러스트: 샘플 이미지"
+      "imageQuery": "electric car charging"
     },
     {
       "type": "outro",
       "sources": [
-        { "name": "예시 출처 (제조사 보도자료)", "date": "2026.10.25", "title": "샘플 출처 제목" }
+        {
+          "name": "예시 출처 (제조사 보도자료)",
+          "date": "2026.10.25",
+          "title": "샘플 출처 제목"
+        }
       ],
       "cta": "저장해두고\n차 살 때 보기"
     }

@@ -1,10 +1,13 @@
 #!/usr/bin/env node
-// 카드 데이터(JSON) → PNG 카드 이미지(1080×1920) → (선택) 릴스용 MP4
+// 카드 데이터(JSON) → PNG 카드 이미지 → (선택) 릴스용 MP4
+//   --format=card : 피드 카드뉴스 1080×1350 (기본)
+//   --format=reel : 릴스 1080×1920, --video 로 MP4까지
 //
 // 사용법:
-//   node cardnews/render.js <data.json> [출력폴더] [--video] [--sec=3] [--bgm=음악.mp3]
+//   node cardnews/render.js <data.json> [출력폴더] [--format=card|reel] [--video] [--sec=3] [--bgm=음악.mp3]
 // 예:
-//   node cardnews/render.js cardnews/samples/policy.json out --video
+//   node cardnews/render.js cardnews/samples/photo-tech.json out
+//   node cardnews/render.js cardnews/samples/policy.json out --format=reel --video
 
 const fs = require("fs");
 const path = require("path");
@@ -22,16 +25,18 @@ const flags = Object.fromEntries(
 const [dataPath, outDir = "out"] = args.filter(a => !a.startsWith("--"));
 
 if (!dataPath) {
-  console.error("사용법: node cardnews/render.js <data.json> [출력폴더] [--video] [--sec=3] [--bgm=음악.mp3]");
+  console.error("사용법: node cardnews/render.js <data.json> [출력폴더] [--format=card|reel] [--video] [--sec=3] [--bgm=음악.mp3]");
   process.exit(1);
 }
 
-async function renderCards(data, dir) {
+const SIZES = { card: { width: 1080, height: 1350 }, reel: { width: 1080, height: 1920 } };
+
+async function renderCards(data, dir, format) {
   const browser = await chromium.launch();
   try {
-    const page = await browser.newPage({ viewport: { width: 1080, height: 1920 } });
+    const page = await browser.newPage({ viewport: SIZES[format] });
     await page.addInitScript(d => { window.CARD_DATA = d; }, data);
-    const templateUrl = "file://" + path.join(__dirname, "template.html") + "?render=1";
+    const templateUrl = "file://" + path.join(__dirname, "template.html") + `?render=1&format=${format}`;
     await page.goto(templateUrl, { waitUntil: "networkidle" });
     await page.waitForFunction(() => document.body.dataset.ready || document.body.dataset.error);
 
@@ -72,8 +77,12 @@ function makeVideo(dir, sec, bgm) {
   data.baseUrl = pathToFileURL(path.resolve(dataPath)).href;
   fs.mkdirSync(outDir, { recursive: true });
 
-  const files = await renderCards(data, outDir);
-  console.log(`카드 ${files.length}장 생성: ${outDir}`);
+  const format = flags.format || data.format || "card";
+  if (!SIZES[format]) throw new Error(`알 수 없는 format: ${format}`);
+  if (flags.video && format !== "reel") throw new Error("--video 는 --format=reel 일 때만 쓸 수 있습니다");
+
+  const files = await renderCards(data, outDir, format);
+  console.log(`카드 ${files.length}장 생성 (${format} ${SIZES[format].width}×${SIZES[format].height}): ${outDir}`);
 
   if (flags.video) {
     const video = makeVideo(outDir, Number(flags.sec) || 3, flags.bgm);

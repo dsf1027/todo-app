@@ -147,6 +147,34 @@
     position: absolute; z-index: 2; right: 96px; bottom: 330px;
     font-size: 24px; color: rgba(255,255,255,.6);
   }
+
+  /* 카드뉴스(피드 캐러셀) 형식: 1080×1350 (4:5). 릴스 UI가 없으니 여백을 줄임 */
+  body.format-card .card { height: 1350px; padding: 150px 80px 130px; }
+  body.format-card .card.photo { padding-top: 170px; }
+  body.format-card .head { top: 64px; left: 80px; right: 80px; }
+  body.format-card .foot { bottom: 56px; left: 80px; right: 80px; }
+  body.format-card .credit { right: 80px; bottom: 100px; }
+  body.format-card .sample { top: 20px; right: 20px; font-size: 22px; }
+  body.format-card .photo-shade {
+    background:
+      linear-gradient(180deg, rgba(0,0,0,.75) 0%, rgba(0,0,0,.4) 30%, rgba(0,0,0,0) 52%),
+      linear-gradient(0deg, rgba(0,0,0,.6) 0%, rgba(0,0,0,0) 22%);
+  }
+  body.format-card h1, body.format-card .photo-text h1 { font-size: 86px; }
+  body.format-card h2, body.format-card .photo-text h2 { font-size: 64px; }
+  body.format-card .photo-text .sub, body.format-card .sub { font-size: 38px; margin-top: 28px; }
+  body.format-card .label { margin-bottom: 32px; }
+  body.format-card .bullets { margin-top: 44px; gap: 24px; }
+  body.format-card .bullets li { font-size: 40px; }
+  body.format-card .bigstat { font-size: 120px; }
+  body.format-card .bars { margin-top: 48px; gap: 28px; }
+  body.format-card .persona { margin-top: 40px; padding: 40px 48px; }
+  body.format-card .persona .result { font-size: 68px; }
+  body.format-card .steps { margin-top: 40px; gap: 22px; }
+  body.format-card .steps li { font-size: 38px; padding: 28px 34px; }
+  body.format-card .sources { margin-top: 36px; }
+  body.format-card .cta { margin-top: 52px; padding: 40px; }
+  body.format-card .cta .big { font-size: 54px; }
 </style>
 </head>
 <body>
@@ -165,8 +193,9 @@
 
   const layouts = {
     // 표지·본문 공용. 첫 장이면 h1, 아니면 h2
+    // image가 아직 없으면(사진 받기 전) 배경 없이 그라데이션만
     photo: (c, d, i) => `
-      <div class="photo-bg" style="background-image:url('${esc(new URL(c.image, d.baseUrl))}')"></div>
+      ${c.image ? `<div class="photo-bg" style="background-image:url('${esc(new URL(c.image, d.baseUrl))}')"></div>` : ""}
       <div class="photo-shade"></div>
       <div class="photo-text">
         ${c.kicker ? `<div class="kicker">${esc(c.kicker)}</div>` : ""}
@@ -265,6 +294,9 @@
     const data = window.CARD_DATA || await fetch(dataUrl).then(r => r.json());
     // 이미지 경로는 데이터 JSON 파일 위치 기준
     data.baseUrl ??= dataUrl.href;
+    // format: "card"(피드 4:5, 기본) | "reel"(9:16)
+    const format = params.get("format") || data.format || "card";
+    if (format === "card") document.body.classList.add("format-card");
     render(data);
     await Promise.all([...document.querySelectorAll(".photo-bg")].map(el => new Promise(res => {
       const img = new Image();
