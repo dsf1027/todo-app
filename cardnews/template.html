@@ -127,6 +127,26 @@
   .cta .big { font-size: 60px; font-weight: 900; }
   .cta .small { font-size: 36px; font-weight: 700; margin-top: 12px; }
   .disclaimer { margin-top: 40px; font-size: 28px; color: var(--muted); line-height: 1.5; }
+
+  /* 사진 카드: 이미지를 화면 가득 깔고, 위쪽에 핵심 문장만 */
+  .card.photo { padding-top: 300px; }
+  .card.photo .head, .card.photo .foot, .card.photo .sample { z-index: 2; }
+  .photo-bg { position: absolute; inset: 0; background: center / cover no-repeat; z-index: 0; }
+  .photo-shade {
+    position: absolute; inset: 0; z-index: 1;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.35) 32%, rgba(0,0,0,0) 50%),
+      linear-gradient(0deg, rgba(0,0,0,.65) 0%, rgba(0,0,0,0) 30%);
+  }
+  .photo-text { position: relative; z-index: 2; text-shadow: 0 4px 24px rgba(0,0,0,.45); }
+  .photo-text .kicker { color: rgba(255,255,255,.8); }
+  .photo-text h1 { font-size: 92px; }
+  .photo-text h2 { font-size: 76px; }
+  .photo-text .sub { color: rgba(255,255,255,.88); font-size: 44px; margin-top: 36px; }
+  .credit {
+    position: absolute; z-index: 2; right: 96px; bottom: 330px;
+    font-size: 24px; color: rgba(255,255,255,.6);
+  }
 </style>
 </head>
 <body>
@@ -144,6 +164,17 @@
   const CATEGORY_LABEL = { economy: "경제", policy: "정책·지원금", tech: "테크·AI" };
 
   const layouts = {
+    // 표지·본문 공용. 첫 장이면 h1, 아니면 h2
+    photo: (c, d, i) => `
+      <div class="photo-bg" style="background-image:url('${esc(new URL(c.image, d.baseUrl))}')"></div>
+      <div class="photo-shade"></div>
+      <div class="photo-text">
+        ${c.kicker ? `<div class="kicker">${esc(c.kicker)}</div>` : ""}
+        ${i === 0 ? `<h1>${rich(c.title)}</h1>` : `<h2>${rich(c.title)}</h2>`}
+        ${c.sub ? `<p class="sub">${rich(c.sub)}</p>` : ""}
+      </div>
+      ${c.credit ? `<div class="credit">${esc(c.credit)}</div>` : ""}`,
+
     cover: c => `
       <div class="body">
         ${c.kicker ? `<div class="kicker">${esc(c.kicker)}</div>` : ""}
@@ -214,14 +245,14 @@
       const layout = layouts[c.type];
       if (!layout) throw new Error(`알 수 없는 카드 type: ${c.type}`);
       return `
-      <section class="card" data-category="${esc(data.category)}">
+      <section class="card ${c.type === "photo" ? "photo" : ""}" data-category="${esc(data.category)}">
         ${data.sample ? `<div class="sample">샘플 데이터</div>` : ""}
         <header class="head">
           <div class="brand"><span class="dot"></span>${esc(data.brand)}</div>
           <span class="tag">${esc(CATEGORY_LABEL[data.category] || data.category)}</span>
           <span class="page">${i + 1} / ${total}</span>
         </header>
-        ${layout(c, data)}
+        ${layout(c, data, i)}
         <footer class="foot"><span>${esc(data.handle)}</span><span>${esc(data.date)}</span></footer>
       </section>`;
     }).join("");
@@ -229,8 +260,17 @@
 
   async function main() {
     if (new URLSearchParams(location.search).has("render")) document.body.classList.add("render");
-    const data = window.CARD_DATA || await fetch(DEFAULT_DATA_URL).then(r => r.json());
+    const params = new URLSearchParams(location.search);
+    const dataUrl = new URL(params.get("data") || DEFAULT_DATA_URL, location.href);
+    const data = window.CARD_DATA || await fetch(dataUrl).then(r => r.json());
+    // 이미지 경로는 데이터 JSON 파일 위치 기준
+    data.baseUrl ??= dataUrl.href;
     render(data);
+    await Promise.all([...document.querySelectorAll(".photo-bg")].map(el => new Promise(res => {
+      const img = new Image();
+      img.onload = img.onerror = res;
+      img.src = getComputedStyle(el).backgroundImage.slice(5, -2);
+    })));
     await document.fonts.ready;
     document.body.dataset.ready = "1";
   }

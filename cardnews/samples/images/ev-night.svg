@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" width="1080" height="1920">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#06222a"/><stop offset=".55" stop-color="#0b4a52"/><stop offset="1" stop-color="#05161b"/>
+    </linearGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3fc1c9"/><stop offset=".5" stop-color="#16808a"/><stop offset="1" stop-color="#0a3d44"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b2a33"/><stop offset="1" stop-color="#1d5c66"/>
+    </linearGradient>
+    <radialGradient id="glow" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#bff6ff" stop-opacity=".9"/><stop offset="1" stop-color="#bff6ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="tire" cx=".5" cy=".5" r=".5">
+      <stop offset=".55" stop-color="#5a6670"/><stop offset=".6" stop-color="#111"/><stop offset="1" stop-color="#050505"/>
+    </radialGradient>
+  </defs>
+  <rect width="1080" height="1920" fill="url(#sky)"/>
+  <g fill="#ffffff" opacity=".5">
+    <circle cx="140" cy="520" r="2"/><circle cx="420" cy="610" r="1.5"/><circle cx="820" cy="560" r="2"/><circle cx="960" cy="700" r="1.5"/><circle cx="300" cy="760" r="1.5"/>
+  </g>
+  <rect y="1380" width="1080" height="540" fill="#04090b"/>
+  <path d="M0 1380 H1080" stroke="#2fd0da" stroke-opacity=".35" stroke-width="3"/>
+  <!-- 차체 -->
+  <path d="M-40 1330 C 40 1180 180 1130 330 1110 C 430 1020 560 960 720 950 C 860 945 980 1000 1120 1080 L1120 1340 L-40 1340 Z" fill="url(#body)"/>
+  <path d="M380 1100 C 470 1020 580 985 720 980 C 820 978 900 1010 980 1060 L 900 1100 Z" fill="url(#glass)"/>
+  <path d="M60 1240 C 300 1200 700 1190 1120 1210" stroke="#9ff3f8" stroke-opacity=".5" stroke-width="4" fill="none"/>
+  <!-- 헤드라이트 -->
+  <ellipse cx="40" cy="1200" rx="160" ry="60" fill="url(#glow)"/>
+  <path d="M-10 1185 L 120 1175 L 105 1205 L -10 1215 Z" fill="#e8feff"/>
+  <!-- 바퀴 -->
+  <circle cx="260" cy="1340" r="150" fill="url(#tire)"/>
+  <circle cx="860" cy="1340" r="150" fill="url(#tire)"/>
+  <g stroke="#9aa6ae" stroke-width="10" opacity=".8">
+    <path d="M260 1260 V1420 M180 1340 H340 M203 1283 L317 1397 M317 1283 L203 1397"/>
+    <path d="M860 1260 V1420 M780 1340 H940 M803 1283 L917 1397 M917 1283 L803 1397"/>
+  </g>
+  <!-- 바닥 반사 -->
+  <ellipse cx="560" cy="1500" rx="560" ry="60" fill="#2fd0da" opacity=".12"/>
+</svg>

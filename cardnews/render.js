@@ -9,6 +9,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execFileSync } = require("child_process");
+const { pathToFileURL } = require("url");
 const { chromium } = require("playwright");
 
 const args = process.argv.slice(2);
@@ -67,6 +68,8 @@ function makeVideo(dir, sec, bgm) {
 
 (async () => {
   const data = JSON.parse(fs.readFileSync(dataPath, "utf8"));
+  // 사진 카드의 image 경로는 JSON 파일 위치 기준
+  data.baseUrl = pathToFileURL(path.resolve(dataPath)).href;
   fs.mkdirSync(outDir, { recursive: true });
 
   const files = await renderCards(data, outDir);

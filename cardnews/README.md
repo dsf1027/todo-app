@@ -31,6 +31,11 @@ node cardnews/render.js cardnews/samples/policy.json out --video
 | `impact` | `label`, `title`, `who`, `result`, `detail` |
 | `action` | `label`, `title`, `steps[]` |
 | `outro` | `label`, `sources[] {name, date, title}`, `cta`, `disclaimer` |
+| `photo` | `image`(JSON 파일 기준 상대경로 또는 URL), `kicker`, `title`, `sub`, `credit` — 이미지를 꽉 채우고 위쪽에 핵심 문장만 |
+
+예시: `samples/policy.json`(기본형), `samples/photo-tech.json`(사진형). 사진형 예시의 이미지는 직접 그린 샘플 일러스트(SVG)입니다.
+
+사진형 카드에는 출처를 밝힐 수 있고 상업적으로 써도 되는 이미지만 넣으세요. `credit`에 출처를 적습니다.
 
 텍스트 안에서 `**강조**`는 강조색, `\n`은 줄바꿈.
 
