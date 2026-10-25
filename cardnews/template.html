@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>이슈한장 카드 템플릿</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  /* 카테고리별 강조색: data.category 값(economy | policy | tech)으로 선택 */
+  :root {
+    --bg: #0e121b; --bg-2: #161c29; --text: #f5f7fa; --muted: #9aa4b5;
+    --line: #2a3242; --accent: #3d8bff; --accent-ink: #0e121b;
+  }
+  [data-category="economy"] { --accent: #22c58b; }
+  [data-category="policy"]  { --accent: #3d8bff; }
+  [data-category="tech"]    { --accent: #a77bff; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #05070b; font-family: "Noto Sans KR", sans-serif;
+    color: var(--text); word-break: keep-all;
+  }
+
+  /* 미리보기: 브라우저에서 열면 축소해서 나란히 보여줌. 렌더링 시에는 ?render=1 로 원본 크기 */
+  .deck { display: flex; flex-wrap: wrap; gap: 40px; padding: 40px; }
+  body:not(.render) .deck { zoom: 0.3; }
+  body.render .deck { display: block; padding: 0; }
+
+  /* 1080×1920 (9:16) 한 장 */
+  .card {
+    position: relative; width: 1080px; height: 1920px; overflow: hidden;
+    background:
+      radial-gradient(900px 700px at 100% 0%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 70%),
+      linear-gradient(180deg, var(--bg-2), var(--bg));
+    /* 릴스 UI(상단 탭, 하단 캡션·버튼)에 가리지 않도록 여백을 크게 둠 */
+    padding: 250px 96px 470px;
+    display: flex; flex-direction: column;
+  }
+  body.render .card { margin: 0; }
+
+  .head {
+    position: absolute; top: 150px; left: 96px; right: 96px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .brand { display: flex; align-items: center; gap: 16px; font-size: 34px; font-weight: 900; }
+  .brand .dot { width: 22px; height: 22px; border-radius: 6px; background: var(--accent); }
+  .tag {
+    font-size: 28px; font-weight: 700; color: var(--accent);
+    border: 3px solid var(--accent); border-radius: 999px; padding: 6px 22px;
+  }
+  .page { font-size: 28px; font-weight: 700; color: var(--muted); }
+
+  .foot {
+    position: absolute; bottom: 380px; left: 96px; right: 96px;
+    display: flex; justify-content: space-between; font-size: 28px; color: var(--muted);
+  }
+  .sample {
+    position: absolute; top: 60px; right: 60px; font-size: 26px; font-weight: 900;
+    background: #ff4d4f; color: #fff; padding: 6px 16px; border-radius: 8px;
+  }
+
+  .body { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .label {
+    display: inline-block; align-self: flex-start; font-size: 34px; font-weight: 900;
+    color: var(--accent-ink); background: var(--accent); padding: 8px 22px; border-radius: 12px;
+    margin-bottom: 44px;
+  }
+  h1 { font-size: 104px; line-height: 1.22; font-weight: 900; letter-spacing: -2px; }
+  h2 { font-size: 72px; line-height: 1.3; font-weight: 900; letter-spacing: -1.5px; }
+  mark { background: none; color: var(--accent); }
+  .sub { margin-top: 48px; font-size: 42px; line-height: 1.5; color: var(--muted); font-weight: 500; }
+  .kicker { font-size: 36px; font-weight: 700; color: var(--muted); margin-bottom: 36px; }
+
+  .bullets { margin-top: 64px; display: flex; flex-direction: column; gap: 32px; list-style: none; }
+  .bullets li {
+    font-size: 44px; line-height: 1.45; font-weight: 500; padding-left: 52px; position: relative;
+  }
+  .bullets li::before {
+    content: ""; position: absolute; left: 0; top: 22px;
+    width: 22px; height: 22px; border-radius: 50%; background: var(--accent);
+  }
+
+  /* 숫자 카드: 가로 막대 */
+  .bigstat { font-size: 150px; font-weight: 900; color: var(--accent); letter-spacing: -4px; line-height: 1.1; }
+  .bigstat-cap { font-size: 40px; color: var(--muted); margin-top: 12px; font-weight: 500; }
+  .bars { margin-top: 72px; display: flex; flex-direction: column; gap: 40px; }
+  .bar-row .bar-top { display: flex; justify-content: space-between; font-size: 38px; margin-bottom: 14px; }
+  .bar-row .bar-top b { font-weight: 900; }
+  .bar-track { height: 44px; border-radius: 12px; background: var(--line); overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 12px; background: var(--muted); }
+  .bar-row.hi .bar-fill { background: var(--accent); }
+  .bar-row.hi .bar-top b { color: var(--accent); }
+  .note { margin-top: 48px; font-size: 30px; color: var(--muted); }
+
+  /* 영향 카드 */
+  .persona {
+    margin-top: 56px; background: var(--bg-2); border: 3px solid var(--line);
+    border-radius: 32px; padding: 52px 56px;
+  }
+  .persona .who { font-size: 38px; color: var(--muted); font-weight: 700; }
+  .persona .result { font-size: 84px; font-weight: 900; margin-top: 18px; letter-spacing: -1.5px; line-height: 1.25; }
+  .persona .detail { font-size: 36px; color: var(--muted); margin-top: 22px; line-height: 1.5; }
+
+  /* 할 일 카드 */
+  .steps { margin-top: 60px; display: flex; flex-direction: column; gap: 30px; list-style: none; counter-reset: s; }
+  .steps li {
+    counter-increment: s; display: flex; gap: 32px; align-items: flex-start;
+    background: var(--bg-2); border: 3px solid var(--line); border-radius: 28px; padding: 36px 40px;
+    font-size: 42px; line-height: 1.4; font-weight: 500;
+  }
+  .steps li::before {
+    content: counter(s); flex: none; width: 64px; height: 64px; border-radius: 50%;
+    background: var(--accent); color: var(--accent-ink); font-weight: 900; font-size: 36px;
+    display: grid; place-items: center;
+  }
+
+  /* 마지막 카드 */
+  .sources { margin-top: 56px; list-style: none; display: flex; flex-direction: column; gap: 18px; }
+  .sources li { font-size: 34px; color: var(--muted); line-height: 1.45; }
+  .sources li b { color: var(--text); font-weight: 700; }
+  .cta {
+    margin-top: 80px; padding: 48px; border-radius: 32px; text-align: center;
+    background: var(--accent); color: var(--accent-ink);
+  }
+  .cta .big { font-size: 60px; font-weight: 900; }
+  .cta .small { font-size: 36px; font-weight: 700; margin-top: 12px; }
+  .disclaimer { margin-top: 40px; font-size: 28px; color: var(--muted); line-height: 1.5; }
+</style>
+</head>
+<body>
+<div class="deck" id="deck"></div>
+
+<script>
+  // 미리보기용 기본 데이터. 렌더링 스크립트는 window.CARD_DATA 를 주입해서 덮어씀
+  const DEFAULT_DATA_URL = "samples/policy.json";
+
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  // **강조** → 강조색, 줄바꿈(\n) → <br>
+  const rich = s => esc(s).replace(/\*\*(.+?)\*\*/g, "<mark>$1</mark>").replace(/\n/g, "<br>");
+
+  const CATEGORY_LABEL = { economy: "경제", policy: "정책·지원금", tech: "테크·AI" };
+
+  const layouts = {
+    cover: c => `
+      <div class="body">
+        ${c.kicker ? `<div class="kicker">${esc(c.kicker)}</div>` : ""}
+        <h1>${rich(c.title)}</h1>
+        ${c.sub ? `<p class="sub">${rich(c.sub)}</p>` : ""}
+      </div>`,
+
+    what: c => `
+      <div class="body">
+        <span class="label">${esc(c.label || "무슨 일?")}</span>
+        <h2>${rich(c.title)}</h2>
+        <ul class="bullets">${(c.points || []).map(p => `<li>${rich(p)}</li>`).join("")}</ul>
+      </div>`,
+
+    numbers: c => {
+      const max = Math.max(...(c.bars || []).map(b => b.value), 1);
+      return `
+      <div class="body">
+        <span class="label">${esc(c.label || "숫자로 보기")}</span>
+        ${c.stat ? `<div class="bigstat">${esc(c.stat)}</div>` : ""}
+        ${c.statCaption ? `<div class="bigstat-cap">${rich(c.statCaption)}</div>` : ""}
+        <div class="bars">${(c.bars || []).map(b => `
+          <div class="bar-row ${b.highlight ? "hi" : ""}">
+            <div class="bar-top"><span>${esc(b.name)}</span><b>${esc(b.display ?? b.value)}</b></div>
+            <div class="bar-track"><div class="bar-fill" style="width:${(b.value / max) * 100}%"></div></div>
+          </div>`).join("")}
+        </div>
+        ${c.note ? `<p class="note">${rich(c.note)}</p>` : ""}
+      </div>`;
+    },
+
+    impact: c => `
+      <div class="body">
+        <span class="label">${esc(c.label || "나한테 영향은?")}</span>
+        <h2>${rich(c.title)}</h2>
+        <div class="persona">
+          <div class="who">${esc(c.who)}</div>
+          <div class="result">${rich(c.result)}</div>
+          ${c.detail ? `<div class="detail">${rich(c.detail)}</div>` : ""}
+        </div>
+      </div>`,
+
+    action: c => `
+      <div class="body">
+        <span class="label">${esc(c.label || "이렇게 하세요")}</span>
+        <h2>${rich(c.title)}</h2>
+        <ol class="steps">${(c.steps || []).map(s => `<li><span>${rich(s)}</span></li>`).join("")}</ol>
+      </div>`,
+
+    outro: (c, d) => `
+      <div class="body">
+        <span class="label">${esc(c.label || "출처")}</span>
+        <ul class="sources">${(c.sources || []).map(s =>
+          `<li><b>${esc(s.name)}</b> · ${esc(s.date || "")}${s.title ? `<br>${esc(s.title)}` : ""}</li>`).join("")}
+        </ul>
+        <div class="cta">
+          <div class="big">${rich(c.cta || "저장해두고 필요할 때 보기")}</div>
+          <div class="small">매일 한 장 · ${esc(d.handle)}</div>
+        </div>
+        <p class="disclaimer">${rich(c.disclaimer || "정보 제공 목적이며, 정확한 내용은 출처 원문을 확인하세요.")}</p>
+      </div>`,
+  };
+
+  function render(data) {
+    const deck = document.getElementById("deck");
+    const total = data.cards.length;
+    deck.innerHTML = data.cards.map((c, i) => {
+      const layout = layouts[c.type];
+      if (!layout) throw new Error(`알 수 없는 카드 type: ${c.type}`);
+      return `
+      <section class="card" data-category="${esc(data.category)}">
+        ${data.sample ? `<div class="sample">샘플 데이터</div>` : ""}
+        <header class="head">
+          <div class="brand"><span class="dot"></span>${esc(data.brand)}</div>
+          <span class="tag">${esc(CATEGORY_LABEL[data.category] || data.category)}</span>
+          <span class="page">${i + 1} / ${total}</span>
+        </header>
+        ${layout(c, data)}
+        <footer class="foot"><span>${esc(data.handle)}</span><span>${esc(data.date)}</span></footer>
+      </section>`;
+    }).join("");
+  }
+
+  async function main() {
+    if (new URLSearchParams(location.search).has("render")) document.body.classList.add("render");
+    const data = window.CARD_DATA || await fetch(DEFAULT_DATA_URL).then(r => r.json());
+    render(data);
+    await document.fonts.ready;
+    document.body.dataset.ready = "1";
+  }
+  main().catch(err => {
+    document.body.dataset.error = err.message;
+    document.body.textContent = "렌더링 오류: " + err.message;
+  });
+</script>
+</body>
+</html>
