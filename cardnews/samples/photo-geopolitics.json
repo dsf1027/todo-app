@@ -1,0 +1,67 @@
+{
+  "sample": true,
+  "format": "card",
+  "brand": "이슈한장",
+  "handle": "@issue.hanjang",
+  "category": "economy",
+  "date": "2026.10.26",
+  "cards": [
+    {
+      "type": "photo",
+      "kicker": "뉴스에 자주 나오는 그 말",
+      "title": "**지정학적 리스크**\n내 지갑엔\n어떻게 올까?",
+      "imageQuery": "world map globe",
+      "image": "images/pixabay-7520535.jpg",
+      "credit": "Photo: ddigitalprintablesco / Pixabay",
+      "imageSource": "https://pixabay.com/photos/earth-space-world-globe-map-stars-7520535/"
+    },
+    {
+      "type": "photo",
+      "title": "① 기름값이\n**먼저 움직여요**",
+      "sub": "원유 생산지·수송로가 불안해지면 국제유가 ↑\n주유비·물류비를 거쳐 물가로 번지는 경향",
+      "imageQuery": "crude oil pump",
+      "image": "images/pixabay-3807679.jpg",
+      "credit": "Photo: distelAPPArath / Pixabay",
+      "imageSource": "https://pixabay.com/photos/%C3%B6lpferd-oil-pump-support-financially-3807679/"
+    },
+    {
+      "type": "photo",
+      "title": "② 불안하면\n**달러로 몰려요**",
+      "sub": "안전자산 선호 → 원화 약세(환율 상승) 경향\n수입 물가·해외여행 비용이 오를 수 있어요",
+      "imageQuery": "dollar money close-up",
+      "image": "images/pixabay-963193.jpg",
+      "credit": "Photo: RoamingPro / Pixabay",
+      "imageSource": "https://pixabay.com/photos/american-bank-banking-banknote-963193/"
+    },
+    {
+      "type": "photo",
+      "title": "③ **공급망**이\n흔들려요",
+      "sub": "항로 차질·수출 통제 → 부품·원자재 지연\n생산 차질과 가격 상승으로 이어질 수 있어요",
+      "imageQuery": "cargo ship sea",
+      "image": "images/pixabay-4490852.jpg",
+      "credit": "Photo: bobrov69 / Pixabay",
+      "imageSource": "https://pixabay.com/photos/ship-container-port-cargo-export-4490852/"
+    },
+    {
+      "type": "photo",
+      "title": "④ 그래서\n**금값**이 주목받아요",
+      "sub": "불확실성이 커지면 금·국채 같은\n안전자산 수요가 늘어나는 경향이 있어요",
+      "imageQuery": "gold coins",
+      "image": "images/pixabay-18061.jpg",
+      "credit": "Photo: PublicDomainPictures / Pixabay",
+      "imageSource": "https://pixabay.com/photos/business-cash-coin-concept-credit-18061/"
+    },
+    {
+      "type": "outro",
+      "sources": [
+        {
+          "name": "예시 출처 (한국은행 보도자료)",
+          "date": "2026.10.26",
+          "title": "샘플 출처 제목"
+        }
+      ],
+      "cta": "저장해두고\n뉴스 볼 때 꺼내 보기",
+      "disclaimer": "일반적인 경향을 설명한 것으로, 실제 영향은 상황마다 다릅니다. 투자 권유가 아닙니다."
+    }
+  ]
+}
