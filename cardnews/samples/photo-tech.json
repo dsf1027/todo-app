@@ -10,25 +10,37 @@
       "type": "photo",
       "kicker": "전기차 살 때 꼭 보는 것",
       "title": "같은 전기차인데\n배터리가 다르다?\n**LFP vs NCM**",
-      "imageQuery": "electric car night"
+      "imageQuery": "car night fog headlights",
+      "image": "images/pixabay-7175329.jpg",
+      "credit": "Photo: REFLEX_PRODUCTION / Pixabay",
+      "imageSource": "https://pixabay.com/photos/car-night-fog-headlights-smoke-7175329/"
     },
     {
       "type": "photo",
       "title": "LFP 배터리는\n**싸고 오래 가요**",
       "sub": "리튬인산철 · 열에 강하고 수명이 긴 편\n대신 같은 무게에 담는 에너지가 적어요",
-      "imageQuery": "battery cells"
+      "imageQuery": "battery close-up",
+      "image": "images/pixabay-5096397.jpg",
+      "credit": "Photo: ds_30 / Pixabay",
+      "imageSource": "https://pixabay.com/photos/battery-lithium-power-energy-5096397/"
     },
     {
       "type": "photo",
       "title": "NCM 배터리는\n**한 번에 멀리 가요**",
       "sub": "니켈·코발트·망간 · 에너지 밀도가 높은 편\n대신 가격이 비싼 편이에요",
-      "imageQuery": "highway sunset"
+      "imageQuery": "highway sunset",
+      "image": "images/pixabay-7367539.jpg",
+      "credit": "Photo: fdr-images / Pixabay",
+      "imageSource": "https://pixabay.com/photos/alps-road-sunset-clouds-italy-7367539/"
     },
     {
       "type": "photo",
       "title": "내 차 배터리는?\n**제원표**에서 확인",
       "sub": "제조사 홈페이지 · 카탈로그의\n'배터리 종류' 항목을 보세요",
-      "imageQuery": "electric car charging"
+      "imageQuery": "electric car charging",
+      "image": "images/pixabay-4077303.jpg",
+      "credit": "Photo: Ralphs_Fotos / Pixabay",
+      "imageSource": "https://pixabay.com/photos/loading-column-charging-station-4077303/"
     },
     {
       "type": "outro",
