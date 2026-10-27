@@ -2,11 +2,13 @@
 // 카드 데이터(JSON) → PNG 카드 이미지 → (선택) 릴스용 MP4
 //   --format=card : 피드 카드뉴스 1080×1350 (기본)
 //   --format=reel : 릴스 1080×1920, --video 로 MP4까지
+//   --jpg         : PNG 대신 JPEG로 저장 (인스타그램 캐러셀은 JPEG만 받음)
 //
 // 사용법:
-//   node cardnews/render.js <data.json> [출력폴더] [--format=card|reel] [--video] [--sec=3] [--bgm=음악.mp3]
+//   node cardnews/render.js <data.json> [출력폴더] [--format=card|reel] [--jpg] [--video] [--sec=3] [--bgm=음악.mp3]
 // 예:
 //   node cardnews/render.js cardnews/samples/photo-tech.json out
+//   node cardnews/render.js cardnews/samples/photo-tech.json out --jpg
 //   node cardnews/render.js cardnews/samples/policy.json out --format=reel --video
 
 const fs = require("fs");
@@ -25,13 +27,13 @@ const flags = Object.fromEntries(
 const [dataPath, outDir = "out"] = args.filter(a => !a.startsWith("--"));
 
 if (!dataPath) {
-  console.error("사용법: node cardnews/render.js <data.json> [출력폴더] [--format=card|reel] [--video] [--sec=3] [--bgm=음악.mp3]");
+  console.error("사용법: node cardnews/render.js <data.json> [출력폴더] [--format=card|reel] [--jpg] [--video] [--sec=3] [--bgm=음악.mp3]");
   process.exit(1);
 }
 
 const SIZES = { card: { width: 1080, height: 1350 }, reel: { width: 1080, height: 1920 } };
 
-async function renderCards(data, dir, format) {
+async function renderCards(data, dir, format, jpg) {
   const browser = await chromium.launch();
   try {
     const page = await browser.newPage({ viewport: SIZES[format] });
@@ -46,8 +48,8 @@ async function renderCards(data, dir, format) {
     const cards = await page.$$(".card");
     const files = [];
     for (let i = 0; i < cards.length; i++) {
-      const file = path.join(dir, `card_${String(i + 1).padStart(2, "0")}.png`);
-      await cards[i].screenshot({ path: file });
+      const file = path.join(dir, `card_${String(i + 1).padStart(2, "0")}.${jpg ? "jpg" : "png"}`);
+      await cards[i].screenshot(jpg ? { path: file, type: "jpeg", quality: 92 } : { path: file });
       files.push(file);
     }
     return files;
@@ -94,8 +96,9 @@ function makeVideo(dir, sec, bgm, cardCount) {
   const format = flags.format || data.format || "card";
   if (!SIZES[format]) throw new Error(`알 수 없는 format: ${format}`);
   if (flags.video && format !== "reel") throw new Error("--video 는 --format=reel 일 때만 쓸 수 있습니다");
+  if (flags.video && flags.jpg) throw new Error("--video 와 --jpg 는 함께 쓸 수 없습니다");
 
-  const files = await renderCards(data, outDir, format);
+  const files = await renderCards(data, outDir, format, flags.jpg);
   console.log(`카드 ${files.length}장 생성 (${format} ${SIZES[format].width}×${SIZES[format].height}): ${outDir}`);
 
   if (flags.video) {

@@ -1,0 +1,81 @@
+{
+  "format": "card",
+  "brand": "이슈한장",
+  "handle": "@issue.hanjang",
+  "category": "economy",
+  "mood": "serious",
+  "date": "2026.10.27",
+  "cards": [
+    {
+      "type": "photo",
+      "kicker": "10월 27일 · 지정학 리스크",
+      "title": "**호르무즈 해협**\n왜 내 기름값을\n흔들까?",
+      "image": "images/pixabay-5500979.jpg",
+      "credit": "Photo: thuanvo / Pixabay",
+      "imageSource": "https://pixabay.com/photos/boat-ship-tanker-tanker-ship-ocean-5500979/"
+    },
+    {
+      "type": "photo",
+      "title": "세계 석유의\n**약 5분의 1**이 지나는 길",
+      "sub": "2024년 하루 평균 약 2,000만 배럴 통과\n원유의 84%가 아시아행, 한국도 주요 도착지",
+      "image": "images/pixabay-7520535.jpg",
+      "credit": "Photo: ddigitalprintablesco / Pixabay",
+      "imageSource": "https://pixabay.com/photos/earth-space-world-globe-map-stars-7520535/"
+    },
+    {
+      "type": "photo",
+      "title": "2주 새 선박\n**18척 이상** 공격받아",
+      "sub": "선박추적업체 Kpler 집계 (10월 20일 보도)\n이란 \"미국이 공격하면 더 강하게 대응\"",
+      "image": "images/pixabay-81056.jpg",
+      "credit": "Photo: 12019 / Pixabay",
+      "imageSource": "https://pixabay.com/photos/arabian-sea-uss-ronald-reagan-ship-81056/"
+    },
+    {
+      "type": "photo",
+      "title": "국제유가\n**110달러** 넘었다",
+      "sub": "10월 20일 장중 WTI 110.48달러\n브렌트유 110.70달러, 5월 이후 최고",
+      "image": "images/pixabay-3807679.jpg",
+      "credit": "Photo: distelAPPArath / Pixabay",
+      "imageSource": "https://pixabay.com/photos/%C3%B6lpferd-oil-pump-support-financially-3807679/"
+    },
+    {
+      "type": "photo",
+      "title": "불안할수록\n**달러·금**으로",
+      "sub": "달러 강세 속 금은 온스당 4,000달러 선\n미·이란 협상 교착에 위험 프리미엄 지속",
+      "image": "images/pixabay-18061.jpg",
+      "credit": "Photo: PublicDomainPictures / Pixabay",
+      "imageSource": "https://pixabay.com/photos/business-cash-coin-concept-credit-18061/"
+    },
+    {
+      "type": "photo",
+      "title": "내 생활엔?\n**주유비·물가** 주목",
+      "sub": "국제유가는 시차를 두고 국내 기름값과\n물가에 반영되는 경향이 있어요",
+      "image": "images/pixabay-7615045.jpg",
+      "credit": "Photo: Jakob_schlothane / Pixabay",
+      "imageSource": "https://pixabay.com/photos/gas-station-gas-pump-retro-petrol-7615045/"
+    },
+    {
+      "type": "outro",
+      "sources": [
+        {
+          "name": "파이낸셜뉴스",
+          "date": "2026.10.20",
+          "title": "국제유가 110달러 돌파 후 상승 폭 축소…중동 긴장에 출렁"
+        },
+        {
+          "name": "미국 에너지정보청(EIA)",
+          "date": "2025.06.16",
+          "title": "Amid regional conflict, the Strait of Hormuz remains critical oil chokepoint"
+        },
+        {
+          "name": "Tradingpedia",
+          "date": "2026.10.26",
+          "title": "Gold Holds Gains as Fed Stance and Mideast Risk Support"
+        }
+      ],
+      "cta": "저장해두고\n주유할 때 떠올리기",
+      "disclaimer": "정보 제공 목적이며 투자 권유가 아닙니다. 수치는 표기한 시점 기준입니다."
+    }
+  ],
+  "caption": "호르무즈 해협이 흔들리면 왜 내 기름값이 오를까? ⛽\n\n✔️ 세계 석유의 약 5분의 1이 지나는 길목 (EIA, 2024년 기준)\n✔️ 최근 2주 새 선박 18척 이상 공격 (Kpler, 10월 20일 보도)\n✔️ 국제유가 장중 110달러 돌파, 5월 이후 최고 (10월 20일)\n\n출처: 파이낸셜뉴스(2026.10.20), 미국 에너지정보청 EIA(2025.06.16), Tradingpedia(2026.10.26)\n정보 제공 목적이며 투자 권유가 아닙니다.\n\n#이슈한장 #경제뉴스 #카드뉴스 #호르무즈해협 #국제유가 #지정학리스크 #기름값 #환율 #금값"
+}
