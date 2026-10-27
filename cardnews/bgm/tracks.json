@@ -1,0 +1,60 @@
+{
+  "_note": "퍼블릭 도메인(PD/CC0) 녹음만 등록. 작곡가 사후 70년 경과 + 녹음 자체도 PD/CC0인지 Commons 라이선스 표기로 확인한 것만 넣을 것",
+  "tracks": [
+    {
+      "id": "holst-mars",
+      "mood": "serious",
+      "title": "The Planets, Op. 32 - I. Mars, the Bringer of War",
+      "composer": "Gustav Holst (1874–1934)",
+      "performer": "Skidmore College Orchestra",
+      "license": "CC0",
+      "page": "https://commons.wikimedia.org/wiki/File:Holst,_The_Planets,_Op._32_-_I._Mars,_the_Bringer_of_War.ogg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Holst%2C_The_Planets%2C_Op._32_-_I._Mars%2C_the_Bringer_of_War.ogg",
+      "start": 0
+    },
+    {
+      "id": "beethoven-5",
+      "mood": "serious",
+      "title": "Symphony No. 5 in C minor, Op. 67 - I. Allegro con brio",
+      "composer": "Ludwig van Beethoven (1770–1827)",
+      "performer": "Musopen",
+      "license": "Public domain",
+      "page": "https://commons.wikimedia.org/wiki/File:Ludwig_van_Beethoven_-_symphony_no._5_in_c_minor,_op._67_-_i._allegro_con_brio.ogg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Ludwig_van_Beethoven_-_symphony_no._5_in_c_minor%2C_op._67_-_i._allegro_con_brio.ogg",
+      "start": 0
+    },
+    {
+      "id": "satie-gymnopedie-1",
+      "mood": "calm",
+      "title": "Gymnopédie No. 1 (guitar)",
+      "composer": "Erik Satie (1866–1925)",
+      "performer": "Michael Laucke",
+      "license": "Public domain",
+      "page": "https://commons.wikimedia.org/wiki/File:Satie_Gymnopedie_No_1_performed_by_Michael_Laucke.flac",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Satie_Gymnopedie_No_1_performed_by_Michael_Laucke.flac",
+      "start": 0
+    },
+    {
+      "id": "debussy-clair-de-lune",
+      "mood": "calm",
+      "title": "Suite bergamasque - Clair de lune",
+      "composer": "Claude Debussy (1862–1918)",
+      "performer": "Laurens Goedhart (piano, 2011)",
+      "license": "Public domain",
+      "page": "https://commons.wikimedia.org/wiki/File:Clair_de_lune_(Claude_Debussy)_Suite_bergamasque.ogg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/b/be/Clair_de_lune_%28Claude_Debussy%29_Suite_bergamasque.ogg",
+      "start": 0
+    },
+    {
+      "id": "vivaldi-spring",
+      "mood": "positive",
+      "title": "The Four Seasons - Spring, RV 269 - I. Allegro",
+      "composer": "Antonio Vivaldi (1678–1741)",
+      "performer": "The Modena Chamber Orchestra (Musopen)",
+      "license": "Public Domain Mark (owner)",
+      "page": "https://commons.wikimedia.org/wiki/File:The_Modena_Chamber_Orchestra_-_Vivaldi%27s_Spring,_RV_269_-_I._Allegro.ogg",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/1/18/The_Modena_Chamber_Orchestra_-_Vivaldi%27s_Spring%2C_RV_269_-_I._Allegro.ogg",
+      "start": 0
+    }
+  ]
+}

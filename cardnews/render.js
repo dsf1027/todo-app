@@ -56,16 +56,30 @@ async function renderCards(data, dir, format) {
   }
 }
 
+// --bgm이 없으면 JSON의 mood(serious·calm·positive)에 맞는 곡을 bgm/<mood>/에서 하나 고름
+function pickBgm(mood) {
+  if (!mood) return null;
+  const dir = path.join(__dirname, "bgm", mood);
+  const files = fs.existsSync(dir) ? fs.readdirSync(dir).filter(f => f.endsWith(".m4a")) : [];
+  if (!files.length) throw new Error(`mood "${mood}"에 맞는 배경음악이 없습니다: ${dir}`);
+  return path.join(dir, files[Math.floor(Math.random() * files.length)]);
+}
+
 // 카드 한 장당 sec초씩 보여주는 9:16 MP4 (H.264, 30fps)
-function makeVideo(dir, sec, bgm) {
+function makeVideo(dir, sec, bgm, cardCount) {
   const out = path.join(dir, "reel.mp4");
+  const total = sec * cardCount;
   const ffArgs = ["-y", "-framerate", `1/${sec}`, "-i", path.join(dir, "card_%02d.png")];
   if (bgm) ffArgs.push("-i", bgm);
   ffArgs.push(
     "-vf", "scale=1080:1920,fps=30,format=yuv420p",
     "-c:v", "libx264", "-preset", "medium", "-crf", "20"
   );
-  if (bgm) ffArgs.push("-c:a", "aac", "-b:a", "128k", "-shortest");
+  // 음악은 영상 길이에 맞춰 자르고 앞 0.5초·끝 1.5초 페이드
+  if (bgm) ffArgs.push(
+    "-af", `afade=t=in:d=0.5,afade=t=out:st=${Math.max(total - 1.5, 0)}:d=1.5`,
+    "-c:a", "aac", "-b:a", "128k", "-ar", "48000", "-t", String(total)
+  );
   ffArgs.push("-movflags", "+faststart", out);
   execFileSync("ffmpeg", ffArgs, { stdio: "inherit" });
   return out;
@@ -85,8 +99,9 @@ function makeVideo(dir, sec, bgm) {
   console.log(`카드 ${files.length}장 생성 (${format} ${SIZES[format].width}×${SIZES[format].height}): ${outDir}`);
 
   if (flags.video) {
-    const video = makeVideo(outDir, Number(flags.sec) || 3, flags.bgm);
-    console.log(`릴스 영상 생성: ${video}`);
+    const bgm = flags.bgm || pickBgm(data.mood);
+    const video = makeVideo(outDir, Number(flags.sec) || 3, bgm, files.length);
+    console.log(`릴스 영상 생성: ${video}${bgm ? ` (배경음악: ${path.basename(bgm)})` : ""}`);
   }
 })().catch(err => {
   console.error("실패:", err.message);

@@ -46,6 +46,7 @@ node cardnews/upload-r2.js out/reel.mp4      # 공개 URL 출력
 | `format` | `card`(기본) / `reel` — 명령줄 `--format`이 우선 |
 | `category` | `economy`(초록) / `policy`(파랑) / `tech`(보라) — 강조색 결정 |
 | `sample` | `true`면 "샘플 데이터" 배지 표시 |
+| `mood` | 릴스 배경음악 분위기 `serious`(웅장·긴장) / `calm`(차분) / `positive`(밝음) — `--bgm`이 없으면 `bgm/<mood>/`에서 한 곡 사용 |
 | `cards[]` | 카드 목록, `type`별 필드는 아래 |
 
 | type | 필드 |
@@ -65,3 +66,9 @@ node cardnews/upload-r2.js out/reel.mp4      # 공개 URL 출력
 텍스트 안에서 `**강조**`는 강조색, `\n`은 줄바꿈.
 
 릴스 형식은 상단 약 250px, 하단 약 470px를 릴스 UI(탭·캡션·버튼)에 가리지 않도록 비워 둡니다.
+
+## 배경음악
+
+`bgm/tracks.json`에 등록한 **퍼블릭 도메인(PD·CC0) 클래식 녹음**만 씁니다. 곡마다 출처(Wikimedia Commons 페이지)와 라이선스를 적어 두었습니다.
+`node cardnews/fetch-bgm.js`가 받아서 60초로 잘라 `bgm/<mood>/<id>.m4a`로 저장합니다
+(Wikimedia가 일부 네트워크를 막아서 보통은 GitHub Actions의 "배경음악 받기"로 실행).

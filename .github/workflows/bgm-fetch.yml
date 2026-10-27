@@ -1,0 +1,42 @@
+# 배경음악 받기: cardnews/bgm/tracks.json의 퍼블릭 도메인 음원을 받아 가공한 뒤 이 브랜치에 커밋
+# (Wikimedia가 일부 네트워크에서 다운로드를 막아 GitHub에서 실행)
+name: 배경음악 받기
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [claude/bold-sagan-3xxoc8]
+    paths: [cardnews/bgm/tracks.json, cardnews/fetch-bgm.js, .github/workflows/bgm-fetch.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: ffmpeg 준비
+        run: command -v ffmpeg || (sudo apt-get update && sudo apt-get install -y ffmpeg)
+
+      - name: 음원 받아 가공
+        run: node cardnews/fetch-bgm.js
+
+      - name: 결과 확인
+        run: |
+          for f in cardnews/bgm/*/*.m4a; do
+            printf '%s  ' "$f"; ffprobe -v error -show_entries format=duration,size -of csv=p=0 "$f"
+          done
+
+      - name: 커밋
+        run: |
+          git add cardnews/bgm
+          if git diff --cached --quiet; then echo "새 음원 없음"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "배경음악 받기 (퍼블릭 도메인, tracks.json 기준)"
+          git push
