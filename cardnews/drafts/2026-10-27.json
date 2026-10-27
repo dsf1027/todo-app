@@ -8,74 +8,63 @@
   "cards": [
     {
       "type": "photo",
-      "kicker": "10월 27일 · 지정학 리스크",
-      "title": "**호르무즈 해협**\n왜 내 기름값을\n흔들까?",
+      "kicker": "10월 27일 · 이번 주 이슈",
+      "title": "미국 금리\n이번 주\n**또 오를까?**",
+      "image": "images/pixabay-4681060.jpg",
+      "credit": "Photo: Walkerssk / Pixabay",
+      "imageSource": "https://pixabay.com/photos/nyc-new-york-new-york-city-usa-4681060/"
+    },
+    {
+      "type": "photo",
+      "title": "지난달엔\n**0.25%p 올렸다**",
+      "sub": "9월 16일 인상 → 연 3.75~4.00%\n9월 미국 소비자물가 3.7%↑ (8월 3.4%)",
+      "image": "images/pixabay-693318.jpg",
+      "credit": "Photo: 422737 / Pixabay",
+      "imageSource": "https://pixabay.com/photos/dare-shopping-venture-basket-693318/"
+    },
+    {
+      "type": "photo",
+      "title": "이번엔 동결 무게\n변수는 **중동발 유가**",
+      "sub": "시장 예상 동결 약 90.6% (10월 22일 기준)\n브렌트유 115.81달러 (10월 26일 종가)",
       "image": "images/pixabay-5500979.jpg",
       "credit": "Photo: thuanvo / Pixabay",
       "imageSource": "https://pixabay.com/photos/boat-ship-tanker-tanker-ship-ocean-5500979/"
     },
     {
       "type": "photo",
-      "title": "세계 석유의\n**약 5분의 1**이 지나는 길",
-      "sub": "2024년 하루 평균 약 2,000만 배럴 통과\n원유의 84%가 아시아행, 한국도 주요 도착지",
-      "image": "images/pixabay-7520535.jpg",
-      "credit": "Photo: ddigitalprintablesco / Pixabay",
-      "imageSource": "https://pixabay.com/photos/earth-space-world-globe-map-stars-7520535/"
-    },
-    {
-      "type": "photo",
-      "title": "2주 새 선박\n**18척 이상** 공격받아",
-      "sub": "선박추적업체 Kpler 집계 (10월 20일 보도)\n이란 \"미국이 공격하면 더 강하게 대응\"",
-      "image": "images/pixabay-81056.jpg",
-      "credit": "Photo: 12019 / Pixabay",
-      "imageSource": "https://pixabay.com/photos/arabian-sea-uss-ronald-reagan-ship-81056/"
-    },
-    {
-      "type": "photo",
-      "title": "국제유가\n**110달러** 넘었다",
-      "sub": "10월 20일 장중 WTI 110.48달러\n브렌트유 110.70달러, 5월 이후 최고",
-      "image": "images/pixabay-3807679.jpg",
-      "credit": "Photo: distelAPPArath / Pixabay",
-      "imageSource": "https://pixabay.com/photos/%C3%B6lpferd-oil-pump-support-financially-3807679/"
-    },
-    {
-      "type": "photo",
-      "title": "불안할수록\n**달러·금**으로",
-      "sub": "달러 강세 속 금은 온스당 4,000달러 선\n미·이란 협상 교착에 위험 프리미엄 지속",
-      "image": "images/pixabay-18061.jpg",
-      "credit": "Photo: PublicDomainPictures / Pixabay",
-      "imageSource": "https://pixabay.com/photos/business-cash-coin-concept-credit-18061/"
-    },
-    {
-      "type": "photo",
-      "title": "내 생활엔?\n**주유비·물가** 주목",
-      "sub": "국제유가는 시차를 두고 국내 기름값과\n물가에 반영되는 경향이 있어요",
-      "image": "images/pixabay-7615045.jpg",
-      "credit": "Photo: Jakob_schlothane / Pixabay",
-      "imageSource": "https://pixabay.com/photos/gas-station-gas-pump-retro-petrol-7615045/"
+      "title": "내 지갑엔?\n**환율·대출금리** 주목",
+      "sub": "원/달러 27일 1,323.7원, 올해 저점 부근\n미국 금리 흐름은 환율·금리에 영향 주는 경향",
+      "image": "images/pixabay-3615092.jpg",
+      "credit": "Photo: 9767304 / Pixabay",
+      "imageSource": "https://pixabay.com/photos/seoul-night-view-city-han-river-3615092/"
     },
     {
       "type": "outro",
       "sources": [
         {
-          "name": "파이낸셜뉴스",
-          "date": "2026.10.20",
-          "title": "국제유가 110달러 돌파 후 상승 폭 축소…중동 긴장에 출렁"
+          "name": "미국 연방준비제도(Fed) FOMC 일정",
+          "date": "2026",
+          "title": "October 27-28 FOMC meeting"
         },
         {
-          "name": "미국 에너지정보청(EIA)",
-          "date": "2025.06.16",
-          "title": "Amid regional conflict, the Strait of Hormuz remains critical oil chokepoint"
+          "name": "TradingKey",
+          "date": "2026.10.24",
+          "title": "October 2026 FOMC Meeting Preview (CME FedWatch 인용)"
         },
         {
-          "name": "Tradingpedia",
+          "name": "Eurasia Business News",
           "date": "2026.10.26",
-          "title": "Gold Holds Gains as Fed Stance and Mideast Risk Support"
+          "title": "Dow, S&P 500, Nasdaq gain as Anthropic IPO boosts AI trade, oil price falls"
+        },
+        {
+          "name": "토큰포스트 · 직썰",
+          "date": "2026.10.27",
+          "title": "원·달러 환율 1,323.7원 마감"
         }
       ],
-      "cta": "저장해두고\n주유할 때 떠올리기",
+      "cta": "결과는 한국 시간\n29일 새벽 발표 예정",
       "disclaimer": "정보 제공 목적이며 투자 권유가 아닙니다. 수치는 표기한 시점 기준입니다."
     }
   ],
-  "caption": "호르무즈 해협이 흔들리면 왜 내 기름값이 오를까? ⛽\n\n✔️ 세계 석유의 약 5분의 1이 지나는 길목 (EIA, 2024년 기준)\n✔️ 최근 2주 새 선박 18척 이상 공격 (Kpler, 10월 20일 보도)\n✔️ 국제유가 장중 110달러 돌파, 5월 이후 최고 (10월 20일)\n\n출처: 파이낸셜뉴스(2026.10.20), 미국 에너지정보청 EIA(2025.06.16), Tradingpedia(2026.10.26)\n정보 제공 목적이며 투자 권유가 아닙니다.\n\n#이슈한장 #경제뉴스 #카드뉴스 #호르무즈해협 #국제유가 #지정학리스크 #기름값 #환율 #금값"
+  "caption": "이번 주 미국 금리, 또 오를까? 🇺🇸\n\n✔️ 미 연준은 9월 16일 금리를 0.25%p 올려 연 3.75~4.00% (9월 소비자물가 3.7%)\n✔️ 이번 회의(10월 27~28일)는 동결 전망이 약 90.6% (CME FedWatch, 10월 22일 기준)\n✔️ 변수는 중동발 고유가: 브렌트유 115.81달러 (10월 26일)\n\n출처: 미 연방준비제도 FOMC 일정, TradingKey(2026.10.24), Eurasia Business News(2026.10.26), 토큰포스트·직썰(2026.10.27)\n정보 제공 목적이며 투자 권유가 아닙니다.\n\n#이슈한장 #경제뉴스 #카드뉴스 #미국금리 #FOMC #연준 #국제유가 #환율 #지정학리스크"
 }
