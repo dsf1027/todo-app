@@ -277,7 +277,7 @@
       <section class="card ${c.type === "photo" ? "photo" : ""}" data-category="${esc(data.category)}">
         ${data.sample ? `<div class="sample">샘플 데이터</div>` : ""}
         <header class="head">
-          <div class="brand"><span class="dot"></span>${esc(data.brand)}</div>
+          <div class="brand">${data.brand ? `<span class="dot"></span>${esc(data.brand)}` : ""}</div>
           <span class="tag">${esc(CATEGORY_LABEL[data.category] || data.category)}</span>
           <span class="page">${i + 1} / ${total}</span>
         </header>

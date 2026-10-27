@@ -23,6 +23,7 @@
   2~3. 한 장에 핵심 하나: `title` 2줄 이내, `sub` 2줄 이내 (한 줄 약 22자)
   4. "내 지갑엔?" 카드
   5. `outro`: `sources` 전부(매체·날짜·제목), `disclaimer`
+- 계정 표기: `brand`(계정 이름)는 넣지 않고, `handle`은 `@issuehororok` (사용자 지정). 캡션에도 계정 이름 해시태그를 넣지 않는다.
 - `**강조**`는 카드당 1곳.
 - `category`: `economy`, `mood`: `serious` / `calm` / `positive` (릴스용, 캐러셀에서는 안 씀).
 
