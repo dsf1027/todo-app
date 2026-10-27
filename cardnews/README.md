@@ -44,7 +44,7 @@ node cardnews/upload-r2.js out/reel.mp4      # 공개 URL 출력
 |---|---|
 | `brand`, `handle`, `date` | 상단 브랜드, 하단 아이디·날짜 |
 | `format` | `card`(기본) / `reel` — 명령줄 `--format`이 우선 |
-| `category` | `economy`(초록) / `policy`(파랑) / `tech`(보라) — 강조색 결정 |
+| `category` | `economy`(초록) / `policy`(파랑) / `tech`(보라) — 강조색만 결정 (카드에 분야 표시는 안 함) |
 | `sample` | `true`면 "샘플 데이터" 배지 표시 |
 | `mood` | 릴스 배경음악 분위기 `serious`(웅장·긴장) / `calm`(차분) / `positive`(밝음) — `--bgm`이 없으면 `bgm/<mood>/`에서 한 곡 사용 |
 | `cards[]` | 카드 목록, `type`별 필드는 아래 |
@@ -57,11 +57,12 @@ node cardnews/upload-r2.js out/reel.mp4      # 공개 URL 출력
 | `impact` | `label`, `title`, `who`, `result`, `detail` |
 | `action` | `label`, `title`, `steps[]` |
 | `outro` | `label`, `sources[] {name, date, title}`, `cta`, `disclaimer` |
-| `photo` | `image`(JSON 파일 기준 상대경로 또는 URL), `imageQuery`(Pixabay·Pexels 영문 검색어), `kicker`, `title`, `sub`, `credit` — 사진을 꽉 채우고 위쪽에 핵심 문장만 |
+| `photo` | `image`(JSON 파일 기준 상대경로 또는 URL), `imagePosition`(사진에서 보일 부분, 예: `center top`), `imageQuery`(Pixabay·Pexels 영문 검색어), `kicker`, `title`, `sub`, `credit` — 사진을 꽉 채우고 위쪽 같은 자리에 핵심 문장만 |
 
 예시: `samples/policy.json`(기본형), `samples/photo-tech.json`(사진형, `fetch-images.js`로 사진을 받은 뒤 렌더링).
 
 사진형 카드에는 상업적으로 써도 되는 사진만 넣고, `credit`에 출처를 적습니다. 직접 받은 사진은 `image`에 경로만 넣으면 됩니다.
+글자 자리(위쪽)가 비어 있는 사진인지는 `node cardnews/photo-space.js <사진...>`으로 점수를 볼 수 있습니다 (20 미만 좋음, 60 이상 겹침).
 
 텍스트 안에서 `**강조**`는 강조색, `\n`은 줄바꿈.
 

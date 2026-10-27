@@ -46,10 +46,6 @@
   }
   .brand { display: flex; align-items: center; gap: 16px; font-size: 34px; font-weight: 900; }
   .brand .dot { width: 22px; height: 22px; border-radius: 6px; background: var(--accent); }
-  .tag {
-    font-size: 28px; font-weight: 700; color: var(--accent);
-    border: 3px solid var(--accent); border-radius: 999px; padding: 6px 22px;
-  }
   .page { font-size: 28px; font-weight: 700; color: var(--muted); }
 
   .foot {
@@ -189,16 +185,17 @@
   // **강조** → 강조색, 줄바꿈(\n) → <br>
   const rich = s => esc(s).replace(/\*\*(.+?)\*\*/g, "<mark>$1</mark>").replace(/\n/g, "<br>");
 
-  const CATEGORY_LABEL = { economy: "경제", policy: "정책·지원금", tech: "테크·AI" };
 
   const layouts = {
     // 표지·본문 공용. 첫 장이면 h1, 아니면 h2
     // image가 아직 없으면(사진 받기 전) 배경 없이 그라데이션만
+    // 제목이 매 장 같은 높이에서 시작하도록 kicker 줄은 비어 있어도 자리를 차지함
+    // imagePosition: 사진에서 보일 부분 (CSS background-position, 예: "center bottom")
     photo: (c, d, i) => `
-      ${c.image ? `<div class="photo-bg" style="background-image:url('${esc(new URL(c.image, d.baseUrl))}')"></div>` : ""}
+      ${c.image ? `<div class="photo-bg" style="background-image:url('${esc(new URL(c.image, d.baseUrl))}');background-position:${esc(c.imagePosition || "center")}"></div>` : ""}
       <div class="photo-shade"></div>
       <div class="photo-text">
-        ${c.kicker ? `<div class="kicker">${esc(c.kicker)}</div>` : ""}
+        <div class="kicker">${c.kicker ? esc(c.kicker) : "&nbsp;"}</div>
         ${i === 0 ? `<h1>${rich(c.title)}</h1>` : `<h2>${rich(c.title)}</h2>`}
         ${c.sub ? `<p class="sub">${rich(c.sub)}</p>` : ""}
       </div>
@@ -278,7 +275,6 @@
         ${data.sample ? `<div class="sample">샘플 데이터</div>` : ""}
         <header class="head">
           <div class="brand">${data.brand ? `<span class="dot"></span>${esc(data.brand)}` : ""}</div>
-          <span class="tag">${esc(CATEGORY_LABEL[data.category] || data.category)}</span>
           <span class="page">${i + 1} / ${total}</span>
         </header>
         ${layout(c, data, i)}
