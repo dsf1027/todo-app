@@ -18,6 +18,23 @@ node cardnews/render.js cardnews/samples/policy.json out --format=reel --video
 #   --bgm=music.mp3  배경음 (저작권 문제 없는 음원만)
 ```
 
+## 릴스 영상 올리기 (Cloudflare R2)
+
+인스타그램 API는 공개 URL에서 영상을 가져가므로, 게시 전에 R2에 올려 둡니다.
+
+```bash
+node cardnews/upload-r2.js out/reel.mp4      # 공개 URL 출력
+```
+
+필요한 환경변수 (GitHub에서는 Settings → Secrets and variables → Actions):
+
+| 이름 | 값 |
+|---|---|
+| `R2_ACCOUNT_ID` | Cloudflare 계정 ID |
+| `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY` | R2 API 토큰 (Object Read & Write, 이 버킷만) |
+| `R2_BUCKET` | 버킷 이름 |
+| `R2_PUBLIC_URL` | 버킷의 공개 주소 (`https://pub-….r2.dev` 또는 연결한 도메인) |
+
 브라우저 미리보기: `cardnews` 폴더에서 로컬 서버를 띄운 뒤 `template.html` 열기
 (예: `npx serve cardnews`). `file://`로 열면 샘플 JSON을 불러오지 못합니다.
 
